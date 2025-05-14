@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Experience - Aulia Raisya</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(to bottom, #e3f2fd, #ffffff);
+      color: #111;
+      line-height: 1.6;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      background: #1e88e5;
+      padding: 20px 40px;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 100;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .navbar .nav-links {
+      list-style: none;
+      display: flex;
+      justify-content: flex-end;
+      gap: 30px;
+    }
+
+    .navbar .nav-links li a {
+      text-decoration: none;
+      color: #fff;
+      font-size: 0.95rem;
+      font-weight: 600;
+      transition: color 0.3s;
+    }
+
+    .navbar .nav-links li a:hover {
+      color: #ffcc00;
+    }
+
+    main.experience-section {
+      padding: 130px 20px 60px;
+      flex: 1;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .container h1 {
+      font-size: 2.8rem;
+      font-weight: bold;
+      margin-bottom: 40px;
+      color: #0d47a1;
+      text-align: center;
+    }
+
+    .experience-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+    }
+
+    .experience-box {
+      background: #ffffff;
+      border-radius: 15px;
+      padding: 25px 20px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      cursor: pointer;
+      opacity: 0;
+      transform: translateY(40px);
+    }
+
+    .experience-box.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .experience-box:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
+    }
+
+    .experience-box strong {
+      display: block;
+      font-size: 1.2rem;
+      color: #1a237e;
+      margin-bottom: 10px;
+    }
+
+    .experience-box p {
+      font-size: 0.95rem;
+      color: #333;
+    }
+
+    .active-box {
+      border: 2px solid #ffcc00;
+      box-shadow: 0 0 15px rgba(255, 204, 0, 0.5);
+      transform: scale(1.02);
+    }
+
+    footer {
+      background-color: #1e88e5;
+      color: #fff;
+      text-align: center;
+      padding: 15px 10px;
+      font-size: 0.85rem;
+    }
+
+    @media (max-width: 768px) {
+      .container h1 {
+        font-size: 2rem;
+      }
+
+      .navbar .nav-links {
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 15px;
+      }
+
+      header {
+        padding: 15px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <nav class="navbar">
+      <ul class="nav-links">
+        <li><a href="home.html">Home</a></li>
+        <li><a href="experience.html">Experience</a></li>
+        <li><a href="skill.html">Skill</a></li>
+        <li><a href="certificate.html">Certificate</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="experience-section">
+    <div class="container">
+      <h1>EXPERIENCE</h1>
+      <div class="experience-list">
+        <div class="experience-box">
+          <strong>LINUX DEBIAN</strong>
+          <p>Saya pernah membuat website menggunakan WordPress, mengkonfigurasi SSH, Web server dengan Apache2, dan file sharing.</p>
+        </div>
+        <div class="experience-box">
+          <strong>INFRASTRUKTUR JARINGAN</strong>
+          <p>Saya mempraktekkan pembuatan serta konfigurasi kabel FO dan LAN: penyambungan, crimping, dan pengukuran konektivitas.</p>
+        </div>
+        <div class="experience-box">
+          <strong>MIKROTIK</strong>
+          <p>Saya pernah mempraktekkan konfigurasi PPPoE, PPTP, L2TP, serta routing type dan route rule.</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Aulia Raisya Salsabila</p>
+  </footer>
+
+  <script>
+    // Efek klik dan highlight
+    const boxes = document.querySelectorAll('.experience-box');
+    boxes.forEach(box => {
+      box.addEventListener('click', () => {
+        const title = box.querySelector('strong').textContent;
+        alert('Kamu memilih pengalaman: ' + title);
+        boxes.forEach(b => b.classList.remove('active-box'));
+        box.classList.add('active-box');
+      });
+    });
+
+    // Efek animasi saat muncul di viewport
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, {
+      threshold: 0.1
+    });
+
+    boxes.forEach(box => observer.observe(box));
+  </script>
+
+</body>
+</html>
